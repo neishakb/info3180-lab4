@@ -8,6 +8,7 @@ import os
 from app import app
 from flask import render_template, request, redirect, url_for, flash, session, abort
 from werkzeug.utils import secure_filename
+from .forms import UploadForm
 
 
 ###
@@ -28,19 +29,53 @@ def about():
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
+    photoform = UploadForm()
+
     if not session.get('logged_in'):
         abort(401)
 
     # Instantiate your form class
+    
 
     # Validate file upload on submit
-    if request.method == 'POST':
+    if request.method == 'POST' and photoform.validate_on_submit():
         # Get file data and save to your uploads folder
+        photo = photoform.photo.data
+
+        filename = secure_filename(photo.filename)
+        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         flash('File Saved', 'success')
         return redirect(url_for('home'))
 
-    return render_template('upload.html')
+    return render_template('upload.html', form=photoform)
+
+
+def get_uploaded_images():
+    rootdir = os.getcwd()
+    photos=[]
+    print (rootdir)
+
+    for subdir, dirs,files in os.walk(rootdir + './app/static/uploads'):
+        print(dirs)
+        for file in photos:
+            print (os.path.join(subdir,file))
+            files.append("uploads/" + file)
+            
+    return files
+
+@app.route('/files')
+def files():
+    if not session.get('logged_in'):
+        abort(401)
+    photos = get_uploaded_images()
+    return render_template('files.html',photos = photos)
+
+
+
+
+
+    
 
 
 @app.route('/login', methods=['POST', 'GET'])

@@ -4,8 +4,11 @@ from flask import Flask
 USERNAME = 'admin'
 PASSWORD = 'password123'
 
+#Upoaded files will be stored here
+UPLOAD_FOLDER = './app/static/uploads'
+
 # SECRET_KEY is needed for session security, the flash() method in this case stores the message in a session
-SECRET_KEY = 'Sup3r$3cretkey'
+SECRET_KEY = 'Sup3r$3cretkey123456'
 
 app = Flask(__name__)
 app.config.from_object(__name__)

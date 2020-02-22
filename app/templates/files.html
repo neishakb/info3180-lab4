@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <div class="gridDisplay">
+        <ul class="grid">
+            {% for file in photos %}
+                <li> <img src="{{ url_for('static', filename="uploads/"+ file) }}" alt="uploaded_photos"> </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+{% endblock %}
