@@ -3,10 +3,11 @@
 {% block main %}
 
     <div class="grid-container">
-        <div class="grid-item">
+        
         {% for file in photos %}
             <img src="{{ url_for('static', filename="uploads/"+ file) }}" alt="uploaded_photos"> 
         {% endfor %}
+    
 
     </div>
 
