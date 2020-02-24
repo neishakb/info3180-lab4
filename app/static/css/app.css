@@ -2,10 +2,6 @@ body {
     padding-top: 5rem;
 }
 
-/* .grid{
-    display: grid;
-   
-} */
 
 img{
     height: 100%;
@@ -16,10 +12,6 @@ img{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-auto-rows: 200px;
-    /* grid-column: 15px;
-    
-    padding-left: 20%;
-    padding-right: 20%; */
     grid-gap: 50px;
 
 }
